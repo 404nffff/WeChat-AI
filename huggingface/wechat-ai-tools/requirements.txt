@@ -1,0 +1,9 @@
+# Target Python 3.11–3.12 (Docker image uses 3.12). Avoid 3.14 until wheels catch up.
+fastapi==0.115.12
+uvicorn[standard]==0.34.2
+httpx==0.28.1
+pydantic==2.11.3
+pydantic-settings==2.8.1
+duckduckgo-search==8.0.1
+pytest==8.3.5
+pytest-asyncio==0.26.0

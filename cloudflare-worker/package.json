@@ -1,0 +1,14 @@
+{
+  "name": "wechat-ai-cf-worker",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Cloudflare Worker reverse-proxy load balancer for WeChat-AI multi-node origins",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "wrangler": "^4.20.0"
+  }
+}

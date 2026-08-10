@@ -1,0 +1,43 @@
+node_modules/
+**/node_modules/
+dist/
+.wa-version
+.wa-update-staging/
+.wa-backup/
+data/
+**/data/
+.env
+.env.local
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+.DS_Store
+*.log
+.turbo/
+coverage/
+apps/web/dist/
+packages/*/dist/
+.ilink/
+tokens/
+*.bak
+
+# Claude / editor
+.claude/
+.idea/
+.vscode/
+*.swp
+
+# Python (huggingface/wechat-ai-tools)
+__pycache__/
+*.pyc
+.venv/
+.venv
+.pytest_cache/
+.hf/
+
+# Wrangler (Cloudflare Worker)
+cloudflare-worker/.wrangler/
+
+# Local UI preview shots
+scripts/ui-shots/

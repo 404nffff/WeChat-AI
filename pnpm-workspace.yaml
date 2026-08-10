@@ -1,0 +1,8 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+# pnpm 11: dependency lifecycle scripts are blocked unless allowlisted.
+# esbuild (via tsx) needs its postinstall to download the native binary.
+allowBuilds:
+  esbuild: true

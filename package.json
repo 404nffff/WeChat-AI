@@ -1,0 +1,22 @@
+{
+  "name": "wechat-ai",
+  "private": true,
+  "version": "0.12.0",
+  "description": "Multi-user WeChat roleplay via iLink + Redis + LINUX DO OAuth",
+  "packageManager": "pnpm@11.15.0",
+  "scripts": {
+    "build": "pnpm -r run build",
+    "dev": "pnpm --filter @wechat-ai/api dev",
+    "db:seed": "pnpm --filter @wechat-ai/db seed",
+    "db:migrate": "pnpm db:seed",
+    "diag": "pnpm --filter @wechat-ai/api diag",
+    "typecheck": "pnpm -r run typecheck",
+    "test": "pnpm -r run test",
+    "release:pack": "node scripts/release-pack.mjs",
+    "docker:build": "node scripts/docker-build.mjs",
+    "docker:up": "node scripts/docker-build.mjs --up"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

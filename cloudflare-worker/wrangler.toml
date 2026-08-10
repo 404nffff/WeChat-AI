@@ -1,0 +1,30 @@
+# Cloudflare Worker: WeChat-AI multi-origin load balancer
+#
+# 1. Set ORIGINS to comma-separated origin base URLs (direct node addresses).
+# 2. wrangler deploy
+# 3. Bind your main domain (Custom Domain) to this Worker.
+#
+# Application PUBLIC_BASE_URL must be the main domain, not individual origins.
+
+name = "wechat-ai-lb"
+main = "src/index.ts"
+compatibility_date = "2025-07-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+# Comma-separated origins, e.g. "http://1.2.3.4:8787,http://5.6.7.8:8787"
+ORIGINS = ""
+# Lightweight process health (background only — does not block user requests)
+HEALTH_PATH = "/health"
+HEALTH_INTERVAL_MS = "15000"
+HEALTH_TIMEOUT_MS = "1500"
+# preserve = forward client Host (recommended when PUBLIC_BASE_URL is main domain)
+# origin   = rewrite Host to origin hostname
+ORIGIN_HOST_MODE = "preserve"
+# Google AdSense: inject adsbygoogle.js into public HTML + serve /ads.txt
+# Clear ADSENSE_CLIENT or set ADSENSE_ENABLED=false to disable
+ADSENSE_CLIENT = ""
+ADSENSE_ENABLED = "false"
+# 登录态控制台（/app /chatflow /admin）不投广告：无广告位，且注入会去掉
+# Content-Encoding，让源站启动时预压缩的 shell 失效
+ADSENSE_SKIP_PATHS = "/admin,/app,/chatflow,/api/,/__lb/,/cdn/,/health"

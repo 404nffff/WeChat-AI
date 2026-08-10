@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5" />
+  <meta name="theme-color" content="#f5f5f7" id="themeColor" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="description" content="WeChat-AI 用户使用文档：登录、绑定机器人、批准好友、人设、表情包、用户对话 @用户名、命令一览与常见问题。" />
+  <meta property="og:title" content="使用文档 — WeChat-AI" />
+  <meta property="og:description" content="从登录到微信对话、@用户名用户对话、人设与表情包的完整使用说明。" />
+  <meta property="og:image" content="/og.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:url" content="/docs" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="WeChat-AI" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="使用文档 — WeChat-AI" />
+  <meta name="twitter:description" content="WeChat-AI 用户使用说明与命令一览。" />
+  <meta name="twitter:image" content="/og.jpg" />
+  <link rel="canonical" href="/docs" />
+  <!-- Robot favicon (inline SVG) -->
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%235e5ce6'/%3E%3Cstop offset='100%25' stop-color='%23bf5af2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Cg fill='none' stroke='%23fff' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='14' y='22' width='36' height='28' rx='8'/%3E%3Ccircle cx='26' cy='36' r='2.4' fill='%23fff' stroke='none'/%3E%3Ccircle cx='38' cy='36' r='2.4' fill='%23fff' stroke='none'/%3E%3Cpath d='M32 14v8M24 50v4M40 50v4M14 34h-4M54 34h-4'/%3E%3C/g%3E%3C/svg%3E"
+  />
+  <!-- Icon font: render-blocking cross-origin CSS that then chain-loads a woff2.
+       preconnect collapses the DNS+TLS round trips; media=print + onload takes it
+       off the critical path so first paint never waits on jsdelivr. -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        media="print" onload="this.media='all';this.onload=null" />
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" /></noscript>
+  <title>使用文档 — WeChat-AI</title>
+  <script>
+    (function () {
+      try {
+        var k = "wa_theme";
+        var t = localStorage.getItem(k);
+        if (t === "system" || (t !== "light" && t !== "dark")) {
+          if (localStorage.getItem(k) === "system") {
+            document.documentElement.setAttribute("data-theme-pref", "system");
+          }
+          t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
+  </script>
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --bg-elevated: rgba(255, 255, 255, 0.72);
+      --surface: #ffffff;
+      --surface-2: #f5f5f7;
+      --text: #1d1d1f;
+      --text-secondary: #6e6e73;
+      --text-tertiary: #86868b;
+      --separator: rgba(0, 0, 0, 0.08);
+      --blue: #0071e3;
+      --blue-hover: #0077ed;
+      --blue-soft: rgba(0, 113, 227, 0.1);
+      --green: #34c759;
+      --green-soft: rgba(52, 199, 89, 0.12);
+      --orange: #ff9f0a;
+      --orange-soft: rgba(255, 159, 10, 0.12);
+      --red: #ff3b30;
+      --chip: rgba(0, 0, 0, 0.05);
+      --code-bg: rgba(0, 0, 0, 0.05);
+      --glow-a: rgba(0, 113, 227, 0.1);
+      --glow-b: rgba(175, 82, 222, 0.08);
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+      --radius: 18px;
+      --radius-sm: 12px;
+      --radius-lg: 22px;
+      --radius-pill: 980px;
+      --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+        "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+        sans-serif;
+      --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+      --theme-icon-sun: none;
+      --theme-icon-moon: inline;
+      --safe-t: env(safe-area-inset-top, 0px);
+      --safe-b: env(safe-area-inset-bottom, 0px);
+      --safe-l: env(safe-area-inset-left, 0px);
+      --safe-r: env(safe-area-inset-right, 0px);
+      --nav-h: 56px;
+      --toc-w: 220px;
+      /* Fluid page gutter + content width: continuous phone → 4K, no jumps */
+      --gutter: clamp(16px, 4vw, 28px);
+      --content-max: 1080px;
+      /* ---- Liquid glass ----
+         Layered translucency: tinted base + blurred backdrop + specular rim
+         (bright top edge, dim bottom edge) that reads as glass thickness
+         rather than a flat frosted panel. */
+      --glass-bg: rgba(255, 255, 255, 0.6);
+      --glass-bg-strong: rgba(255, 255, 255, 0.76);
+      --glass-blur: 24px;
+      --glass-hi: rgba(255, 255, 255, 0.95);
+      --glass-lo: rgba(255, 255, 255, 0.3);
+      --glass-ring: rgba(0, 0, 0, 0.07);
+      --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05);
+      --sk-sheen: rgba(255, 255, 255, 0.6);
+      /* ---- 动态玻璃：滚动深度驱动 ---- */
+      --glass-rgb: 255, 255, 255;
+      --glass-a-min: 0.3;
+      --glass-a-max: 0.76;
+      --glass-blur-min: 4px;
+      --glass-blur-max: 24px;
+      --glass-progress: 0;
+      --glass-a: calc(var(--glass-a-min) + (var(--glass-a-max) - var(--glass-a-min)) * var(--glass-progress));
+      --glass-blur-live: calc(var(--glass-blur-min) + (var(--glass-blur-max) - var(--glass-blur-min)) * var(--glass-progress));
+    }
+    @media (min-width: 1600px) {
+      :root { --toc-w: 250px; --content-max: 1220px; }
+    }
+    html[data-theme="dark"] {
+      --bg: #000000;
+      --bg-elevated: rgba(28, 28, 30, 0.72);
+      --surface: #1c1c1e;
+      --surface-2: #2c2c2e;
+      --text: #f5f5f7;
+      --text-secondary: #a1a1a6;
+      --text-tertiary: #6e6e73;
+      --separator: rgba(255, 255, 255, 0.1);
+      --blue: #0a84ff;
+      --blue-hover: #409cff;
+      --blue-soft: rgba(10, 132, 255, 0.18);
+      --green: #30d158;
+      --green-soft: rgba(48, 209, 88, 0.16);
+      --orange: #ff9f0a;
+      --orange-soft: rgba(255, 159, 10, 0.18);
+      --red: #ff453a;
+      --chip: rgba(255, 255, 255, 0.08);
+      --code-bg: rgba(255, 255, 255, 0.08);
+      --glow-a: rgba(10, 132, 255, 0.14);
+      --glow-b: rgba(191, 90, 242, 0.12);
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+      --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.45);
+      --theme-icon-sun: inline;
+      --theme-icon-moon: none;
+      --glass-bg: rgba(30, 30, 32, 0.58);
+      --glass-bg-strong: rgba(32, 32, 34, 0.78);
+      --glass-hi: rgba(255, 255, 255, 0.16);
+      --glass-lo: rgba(255, 255, 255, 0.04);
+      --glass-ring: rgba(255, 255, 255, 0.1);
+      --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.35);
+      --sk-sheen: rgba(255, 255, 255, 0.08);
+      --glass-rgb: 30, 30, 32;
+      --glass-a-min: 0.32;
+      --glass-a-max: 0.78;
+    }
+    * { box-sizing: border-box; }
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      color-scheme: light;
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      scrollbar-width: thin;
+      scrollbar-color: var(--chip) transparent;
+    }
+    *::-webkit-scrollbar { width: 8px; height: 8px; }
+    *::-webkit-scrollbar-track { background: transparent; }
+    *::-webkit-scrollbar-thumb {
+      background: var(--chip);
+      border-radius: 99px;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+    }
+    html[data-theme="dark"] { color-scheme: dark; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100dvh;
+      font-family: var(--font);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, var(--glow-a), transparent 50%),
+        radial-gradient(900px 500px at 100% 0%, var(--glow-b), transparent 45%),
+        var(--bg);
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { color: var(--blue-hover); }
+
+    /* ---------- Liquid glass material ---------- */
+    .glass {
+      position: relative;
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+      box-shadow:
+        inset 0 1px 0 0 var(--glass-hi),
+        inset 0 -1px 0 0 var(--glass-lo),
+        var(--glass-shadow);
+    }
+    .glass-strong { background: var(--glass-bg-strong); }
+    /* 吸顶层专用：底下有内容滚过时才逐渐加深，滚动到顶部时近乎透明。
+       与 iOS 导航栏一致；.glass 保持静态，供不随滚动变化的浮层使用。 */
+    .glass-dynamic {
+      background: rgba(var(--glass-rgb), var(--glass-a));
+      backdrop-filter: blur(var(--glass-blur-live)) saturate(180%);
+      -webkit-backdrop-filter: blur(var(--glass-blur-live)) saturate(180%);
+      box-shadow:
+        inset 0 1px 0 0 rgba(255, 255, 255, calc(0.95 * var(--glass-progress))),
+        0 1px 0 0 rgba(0, 0, 0, calc(0.08 * var(--glass-progress)));
+    }
+    html[data-theme="dark"] .glass-dynamic {
+      box-shadow:
+        inset 0 1px 0 0 rgba(255, 255, 255, calc(0.16 * var(--glass-progress))),
+        0 1px 0 0 rgba(255, 255, 255, calc(0.1 * var(--glass-progress)));
+    }
+    /* ---------- 边缘折射（液态玻璃厚度感） ---------- */
+    .wa-lens-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+    /* 折射只在 Chromium 桌面开启，见页面底部的网关脚本。降低模糊让折射看得见——
+       已经糊成一团的内容没法再折射，两者此消彼长。 */
+    html.wa-lens .glass,
+    html.wa-lens .glass-strong {
+      backdrop-filter: blur(14px) saturate(180%) url(#waGlassLens);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+    }
+    /* Specular rim traced around the shape, masked to a 1px ring so the fill
+       stays clear. Gives the edge-lit look that separates liquid glass from
+       plain frosted blur. */
+    .glass-rim::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(145deg, var(--glass-hi) 0%, transparent 38%, transparent 62%, var(--glass-lo) 100%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: 3;
+    }
+    .glass-rim > * { position: relative; z-index: 2; }
+
+    /* ---------- Staggered entrance ---------- */
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: none; }
+    }
+    .stagger:not(.in-view) > * { opacity: 0; }
+    .stagger.in-view > * { animation: riseIn 0.42s var(--ease) backwards; }
+    .stagger > *:nth-child(1) { animation-delay: 0.02s; }
+    .stagger > *:nth-child(2) { animation-delay: 0.06s; }
+    .stagger > *:nth-child(3) { animation-delay: 0.1s; }
+    .stagger > *:nth-child(4) { animation-delay: 0.14s; }
+    .stagger > *:nth-child(5) { animation-delay: 0.18s; }
+    .stagger > *:nth-child(6) { animation-delay: 0.22s; }
+    .stagger > *:nth-child(7) { animation-delay: 0.26s; }
+    .stagger > *:nth-child(8) { animation-delay: 0.3s; }
+    .stagger > *:nth-child(n + 9) { animation-delay: 0.34s; }
+
+    /* ---------- Button busy spinner ---------- */
+    .btn.is-busy {
+      pointer-events: none;
+      position: relative;
+      color: transparent !important;
+    }
+    .btn.is-busy > * { visibility: hidden; }
+    .btn.is-busy::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 15px;
+      height: 15px;
+      margin: -8px 0 0 -8px;
+      border-radius: 50%;
+      border: 2px solid var(--spin-track, rgba(0, 0, 0, 0.2));
+      border-top-color: var(--spin-head, var(--text));
+      animation: spin 0.7s linear infinite;
+    }
+    .btn-primary.is-busy, .btn-danger.is-busy { --spin-track: rgba(255, 255, 255, 0.35); --spin-head: #fff; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    button, .btn, .theme-toggle {
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    .btn:focus-visible,
+    .theme-toggle:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px var(--blue-soft);
+    }
+    .wrap {
+      width: min(var(--content-max), 100%);
+      margin: 0 auto;
+      padding: 0 max(var(--gutter), var(--safe-r)) 0 max(var(--gutter), var(--safe-l));
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: var(--nav-h);
+      padding: var(--safe-t) max(20px, var(--safe-r)) 0 max(20px, var(--safe-l));
+      /* 材质交给 .glass-dynamic：底色与模糊随滚动深度连续变化，
+         页面在顶部时几乎透明，正文滚到底下后才逐渐变成实心导航条。
+         这里只保留布局与下边框。 */
+      border-bottom: 1px solid var(--separator);
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+      font-weight: 650;
+      letter-spacing: -0.02em;
+    }
+    .brand:hover { color: var(--text); }
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      flex-shrink: 0;
+      display: inline-grid;
+      place-items: center;
+      background: linear-gradient(145deg, #5e5ce6 0%, #bf5af2 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.28),
+        0 2px 8px rgba(94, 92, 230, 0.28);
+      color: #fff;
+      font-size: 14px;
+      line-height: 1;
+    }
+    .brand-mark .bi {
+      font-size: 0.95em;
+      line-height: 1;
+      filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.15));
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 9px 16px;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 560;
+      cursor: pointer;
+      transition: transform .15s var(--ease), background .15s var(--ease), color .15s var(--ease);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary { background: var(--blue); color: #fff; }
+    .btn-primary:hover { background: var(--blue-hover); color: #fff; }
+    .btn-secondary {
+      background: var(--chip);
+      color: var(--text);
+    }
+    .btn-secondary:hover { background: var(--blue-soft); color: var(--blue); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-secondary);
+      padding: 9px 12px;
+    }
+    .btn-ghost:hover { color: var(--text); background: var(--chip); }
+    .theme-toggle {
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 50%;
+      background: var(--chip);
+      color: var(--text);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .theme-toggle .sun { display: var(--theme-icon-sun); }
+    .theme-toggle .moon { display: var(--theme-icon-moon); }
+
+    .docs-layout {
+      display: grid;
+      grid-template-columns: var(--toc-w) minmax(0, 1fr);
+      gap: 28px;
+      padding: 28px 0 64px;
+      align-items: start;
+    }
+    .toc {
+      position: sticky;
+      top: calc(var(--nav-h) + 16px + var(--safe-t));
+      max-height: calc(100dvh - var(--nav-h) - 32px - var(--safe-t));
+      overflow: auto;
+      padding: 14px;
+      border-radius: var(--radius);
+      /* Deliberately NOT glass: .docs-layout puts the TOC in its own grid column,
+         so the article scrolls *beside* it, never behind it. A backdrop-filter
+         here would blur the flat page background — GPU cost for a muddy grey
+         panel. Solid surface reads cleaner and keeps the text contrast. */
+      background: var(--surface);
+      border: 1px solid var(--separator);
+      box-shadow: var(--shadow-sm);
+    }
+    .toc h2 {
+      margin: 0 0 10px;
+      font-size: 12px;
+      font-weight: 650;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+    }
+    .toc a {
+      display: block;
+      padding: 7px 10px;
+      border-radius: 8px;
+      color: var(--text-secondary);
+      font-size: 13.5px;
+      line-height: 1.35;
+    }
+    .toc a:hover,
+    .toc a.active {
+      background: var(--blue-soft);
+      color: var(--blue);
+    }
+    .toc a.sub { padding-left: 18px; font-size: 13px; }
+
+    .doc {
+      min-width: 0;
+    }
+    .doc-hero {
+      padding: 8px 0 20px;
+      border-bottom: 1px solid var(--separator);
+      margin-bottom: 28px;
+    }
+    .doc-hero .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .doc-hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(24px, 5vw, 36px);
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+    .doc-hero p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: clamp(14.5px, 1.8vw, 16px);
+      max-width: 52ch;
+    }
+
+    section.sec {
+      scroll-margin-top: calc(var(--nav-h) + 20px + var(--safe-t));
+      margin-bottom: 36px;
+    }
+    section.sec > h2 {
+      margin: 0 0 12px;
+      font-size: clamp(19px, 2.6vw, 22px);
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    section.sec > h2 .num {
+      display: inline-flex;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      background: var(--blue-soft);
+      color: var(--blue);
+      flex-shrink: 0;
+    }
+    section.sec > h3 {
+      margin: 20px 0 8px;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+    }
+    section.sec p {
+      margin: 0 0 12px;
+      color: var(--text-secondary);
+      font-size: 15px;
+    }
+    section.sec ul, section.sec ol {
+      margin: 0 0 14px;
+      padding-left: 1.25em;
+      color: var(--text-secondary);
+      font-size: 15px;
+    }
+    section.sec li { margin: 6px 0; }
+    section.sec li strong { color: var(--text); font-weight: 600; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--separator);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      box-shadow: var(--shadow-sm);
+      margin: 12px 0 16px;
+    }
+    .card.tip {
+      background: var(--green-soft);
+      border-color: transparent;
+    }
+    .card.warn {
+      background: var(--orange-soft);
+      border-color: transparent;
+    }
+    .card p:last-child { margin-bottom: 0; }
+    .card .label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 6px;
+    }
+    .card.tip .label { color: var(--green); }
+    .card.warn .label { color: var(--orange); }
+
+    .steps {
+      display: grid;
+      gap: 10px;
+      margin: 12px 0 16px;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      border: 1px solid var(--separator);
+    }
+    .step .n {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .step h4 {
+      margin: 2px 0 4px;
+      font-size: 15px;
+    }
+    .step p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    table.cmd {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin: 10px 0 16px;
+      background: var(--surface);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--separator);
+    }
+    table.cmd th,
+    table.cmd td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--separator);
+      vertical-align: top;
+    }
+    table.cmd th {
+      background: var(--surface-2);
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 650;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    table.cmd tr:last-child td { border-bottom: none; }
+    table.cmd td:first-child { white-space: nowrap; width: 38%; }
+
+    code, kbd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.9em;
+      background: var(--code-bg);
+      padding: 0.12em 0.4em;
+      border-radius: 6px;
+      color: var(--text);
+    }
+    kbd {
+      border: 1px solid var(--separator);
+      box-shadow: 0 1px 0 var(--separator);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+      gap: 12px;
+      margin: 12px 0 16px;
+    }
+    .mini {
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      border: 1px solid var(--separator);
+    }
+    .mini h4 {
+      margin: 0 0 6px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mini p {
+      margin: 0;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+    }
+    .mini i { color: var(--blue); }
+
+    footer {
+      border-top: 1px solid var(--separator);
+      padding: 24px 0 calc(32px + var(--safe-b));
+      color: var(--text-tertiary);
+      font-size: 13px;
+    }
+    footer .foot-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer a { color: var(--text-secondary); }
+    footer a:hover { color: var(--blue); }
+
+    @media (max-width: 860px) {
+      :root { --nav-h: 52px; }
+      .docs-layout {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding-top: 18px;
+        padding-bottom: calc(40px + var(--safe-b));
+      }
+      .toc {
+        position: static;
+        max-height: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        padding: 10px;
+      }
+      .toc h2 { width: 100%; margin-bottom: 4px; }
+      .toc a {
+        padding: 8px 12px;
+        background: var(--chip);
+        min-height: 36px;
+        display: inline-flex;
+        align-items: center;
+      }
+      .toc a.sub { padding-left: 10px; }
+      .nav {
+        padding-left: max(12px, var(--safe-l));
+        padding-right: max(12px, var(--safe-r));
+        gap: 8px;
+      }
+      .nav-actions { gap: 6px; }
+      .nav-actions .btn-ghost .btn-label { display: none; }
+      .nav-actions .btn-ghost {
+        padding: 0;
+        min-width: 36px;
+        min-height: 36px;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+      }
+      .theme-toggle { width: 36px; height: 36px; flex-shrink: 0; }
+      .brand span {
+        max-width: 42vw;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      table.cmd {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+    }
+    @media (max-width: 380px) {
+      .brand span { max-width: 96px; }
+      .nav-actions .btn-primary { padding: 8px 12px; font-size: 13px; min-height: 36px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+      /* Entrance stagger must never gate visibility on JS for these users. */
+      .stagger:not(.in-view) > * { opacity: 1 !important; }
+    }
+    @media (prefers-contrast: more) {
+      :root {
+        --separator: rgba(0, 0, 0, 0.24);
+        --text-secondary: #515154;
+        --text-tertiary: #6e6e73;
+      }
+      html[data-theme="dark"] {
+        --separator: rgba(255, 255, 255, 0.3);
+        --text-secondary: #c7c7cc;
+        --text-tertiary: #98989d;
+      }
+    }
+    @media (prefers-reduced-transparency: reduce) {
+      :root { --bg-elevated: #f5f5f7; }
+      html[data-theme="dark"] { --bg-elevated: #1c1c1e; }
+      /* 动态玻璃降级为实心：不再透明，也不再随滚动改变模糊与底色。 */
+      .nav,
+      .glass-dynamic {
+        background: var(--bg-elevated) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+      }
+      /* 折射同样关闭：html.wa-lens 那两条把 backdrop-filter 又写了回来，必须覆盖。 */
+      .glass,
+      .glass-strong,
+      html.wa-lens .glass,
+      html.wa-lens .glass-strong {
+        background: var(--surface) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+      }
+      .glass-rim::before { display: none !important; }
+    }
+  </style>
+  <noscript>
+    <style>
+      /* The stagger reveal hides children until JS adds .in-view — without JS
+         that content would be permanently invisible. */
+      .stagger:not(.in-view) > * { opacity: 1 !important; animation: none !important; }
+      /* 无脚本时滞动进度永远为 0，吸顶栏会停在 0.3 底色 + 4px 模糊，
+         连分隔线都没有，正文会直接透过去。直接拉满，等同于改造前的静态玻璃。 */
+      :root { --glass-progress: 1; }
+    </style>
+  </noscript>
+</head>
+<body>
+  <svg class="wa-lens-defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+    <!-- 边缘折射位移图：R 通道控制横向取样、G 通道控制纵向。中心为中性值 128 故不位移，
+         四边渐变让取样点向内偏移，形成玻璃厚度的透镜感。
+         color-interpolation-filters="sRGB" 必须保留：默认的 linearRGB 会把中性点 128
+         换算成 ~55，导致整个背景被均匀推歪。 -->
+    <filter id="waGlassLens" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feImage href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' preserveAspectRatio='none'><defs><linearGradient id='x' x1='0' x2='1'><stop offset='0' stop-color='rgb(255,0,0)'/><stop offset='0.25' stop-color='rgb(128,0,0)'/><stop offset='0.75' stop-color='rgb(128,0,0)'/><stop offset='1' stop-color='rgb(0,0,0)'/></linearGradient><linearGradient id='y' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='rgb(0,255,0)'/><stop offset='0.3' stop-color='rgb(0,128,0)'/><stop offset='0.7' stop-color='rgb(0,128,0)'/><stop offset='1' stop-color='rgb(0,0,0)'/></linearGradient></defs><rect width='100' height='100' fill='url(%23x)'/><rect width='100' height='100' fill='url(%23y)' style='mix-blend-mode:plus-lighter'/></svg>" preserveAspectRatio="none" result="wa-map"/>
+      <feDisplacementMap in="SourceGraphic" in2="wa-map" scale="14" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs></svg>
+
+  <header class="nav glass-dynamic">
+    <a class="brand" href="/">
+      <span class="brand-mark" aria-hidden="true"><i class="bi bi-robot"></i></span>
+      <span>WeChat-AI</span>
+    </a>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" title="切换主题" aria-label="切换主题">
+        <i class="bi bi-sun-fill sun" aria-hidden="true"></i>
+        <i class="bi bi-moon-fill moon" aria-hidden="true"></i>
+      </button>
+      <a class="btn btn-ghost" href="/"><span class="btn-label">首页</span></a>
+      <a class="btn btn-primary" href="/app">用户中心</a>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="docs-layout">
+      <aside class="toc" aria-label="目录">
+        <h2>目录</h2>
+        <a href="#intro">简介</a>
+        <a href="#quickstart">快速开始</a>
+        <a href="#bots">机器人</a>
+        <a href="#peers">批准好友</a>
+        <a href="#persona">人设</a>
+        <a href="#stickers">表情包</a>
+        <a href="#p2p">用户对话 @</a>
+        <a href="#p2p" class="sub">绑定身份</a>
+        <a href="#p2p-chat" class="sub">发起 / 同意</a>
+        <a href="#block">黑名单</a>
+        <a href="#commands">微信命令</a>
+        <a href="#proactive">主动联系</a>
+        <a href="#faq">常见问题</a>
+      </aside>
+
+      <article class="doc">
+        <header class="doc-hero">
+          <div class="eyebrow"><i class="bi bi-book" aria-hidden="true"></i> 使用文档</div>
+          <h1>WeChat-AI 用户手册</h1>
+          <p>
+            说明如何登录、绑定微信机器人、和好友角色扮演对话，以及通过
+            <code>@LINUX DO 用户名</code> 与其他用户私聊。面向普通用户，无需写代码。
+          </p>
+        </header>
+
+        <section class="sec" id="intro">
+          <h2><span class="num">1</span> 简介</h2>
+          <p>
+            WeChat-AI 是一个<strong>自托管微信角色扮演服务</strong>：你用
+            <strong>LINUX DO</strong> 账号登录网页，扫码绑定自己的微信 ClawBot，
+            批准好友后即可在微信里和 AI 角色聊天。系统还会支持已绑定用户之间的
+            <strong>用户对话</strong>（机器人中继，不经过 AI）。
+          </p>
+          <div class="grid-2 stagger">
+            <div class="mini">
+              <h4><i class="bi bi-window"></i> 网页端</h4>
+              <p>用户中心 <a href="/app">/app</a>：机器人、用户对话、人设、表情、绑定码、黑名单。</p>
+            </div>
+            <div class="mini">
+              <h4><i class="bi bi-chat-dots"></i> 微信端</h4>
+              <p>给机器人发文字即可聊天；可用 <code>/绑定</code>、<code>@用户名</code> 等命令。</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="sec" id="quickstart">
+          <h2><span class="num">2</span> 快速开始</h2>
+          <div class="steps">
+            <div class="step">
+              <div class="n">1</div>
+              <div>
+                <h4>登录</h4>
+                <p>打开 <a href="/app">用户中心</a>，使用 <strong>LINUX DO</strong> 账号授权登录。</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="n">2</div>
+              <div>
+                <h4>扫码添加机器人</h4>
+                <p>在「我的机器人」点击<strong>扫码添加</strong>，用微信扫码完成 ClawBot 绑定。</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="n">3</div>
+              <div>
+                <h4>让好友私聊机器人</h4>
+                <p>好友在微信中找到该机器人并发一条消息；你在用户中心<strong>批准</strong>后即可对话。</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="n">4</div>
+              <div>
+                <h4>（可选）分配人设</h4>
+                <p>从人设广场添加角色，在用户列表中为人设分配给具体好友。</p>
+              </div>
+            </div>
+          </div>
+          <div class="card tip">
+            <div class="label">提示</div>
+            <p>默认仅<strong>已批准</strong>的微信用户可以和 AI 聊天。未批准时机器人会提示联系主人开通。</p>
+          </div>
+        </section>
+
+        <section class="sec" id="bots">
+          <h2><span class="num">3</span> 管理机器人</h2>
+          <ul>
+            <li><strong>扫码添加</strong>：创建新的微信机器人账号。</li>
+            <li><strong>重新扫码</strong>：token 失效时刷新凭证；会保留已批准用户、人设分配与记忆。</li>
+            <li><strong>改名 / 删除</strong>：在机器人卡片或列表中操作。</li>
+          </ul>
+          <div class="card warn">
+            <div class="label">注意</div>
+            <p>请遵守腾讯微信 / ClawBot 相关使用条款。个人 Bot 可能有限流与风控；建议控制开放范围（白名单批准）。</p>
+          </div>
+        </section>
+
+        <section class="sec" id="peers">
+          <h2><span class="num">4</span> 批准微信好友</h2>
+          <ol>
+            <li>对方给机器人发任意消息后，会出现在「微信用户」列表。</li>
+            <li>点击<strong>批准</strong>，可选同时分配人设。</li>
+            <li>对方即可开始角色扮演对话（AI 可能分多条气泡回复）。</li>
+          </ol>
+          <p>可在列表中查看记忆、清空记忆，或开启「允许主动」（见下文主动联系）。</p>
+        </section>
+
+        <section class="sec" id="persona">
+          <h2><span class="num">5</span> 人设</h2>
+          <ul>
+            <li><strong>人设广场</strong>：按热度浏览公开角色；可<strong>试聊</strong>（网页限量体验，不写入微信）、<strong>加入库</strong>或<strong>改编</strong>（复制为你的私有草稿，可自由改写）。</li>
+            <li><strong>我的人设</strong>：创建 / 编辑自己的角色提示词；可设为公开或私有；改编来的人设会标注「改编自」。</li>
+            <li><strong>分配</strong>：在微信用户行选择人设，仅对应该用户生效；分配次数会提升广场热度。</li>
+          </ul>
+          <p>微信内发送 <code>/角色</code> <strong>不会</strong>切换角色——角色只能由主人在后台分配。</p>
+          <p>试聊有每日与单会话条数上限，计入 Token 用量；管理员可通过环境变量关闭。</p>
+        </section>
+
+        <section class="sec" id="stickers">
+          <h2><span class="num">6</span> 表情包</h2>
+          <ul>
+            <li>在表情包广场浏览、加入自己的库；也可上传投稿（公开需管理员审核）。</li>
+            <li>对话中 AI 可能引用库中的 slug 以图片表情回复（需主人库中可用）。</li>
+          </ul>
+        </section>
+
+        <section class="sec" id="p2p">
+          <h2><span class="num">7</span> 用户对话（@LINUX DO 用户名）</h2>
+          <p>
+            两个都完成「微信身份绑定」的用户，可以在微信里通过机器人
+            <strong>互相发消息</strong>（中继，不调用 AI）。用户名即 LINUX DO 的
+            <code>username</code>。
+          </p>
+
+          <h3>7.1 绑定身份</h3>
+          <div class="steps">
+            <div class="step">
+              <div class="n">1</div>
+              <div>
+                <h4>生成绑定码</h4>
+                <p>用户中心 → <strong>用户对话</strong> → 微信身份绑定 → 生成绑定码（约 10 分钟有效）。</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="n">2</div>
+              <div>
+                <h4>微信确认</h4>
+                <p>给<strong>任意已绑定的机器人</strong>发送：<code>/绑定 ABC123</code>（替换为你的码）。</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="n">3</div>
+              <div>
+                <h4>先聊一句</h4>
+                <p>绑定后请给机器人发过至少一条消息，系统才有推送凭证；否则别人 @ 你时会提示「不可达」。</p>
+              </div>
+            </div>
+          </div>
+          <div class="card tip">
+            <div class="label">查询身份</div>
+            <p>微信发送 <code>/我的身份</code> 可查看当前绑定的 LINUX DO 用户名与会话状态。</p>
+          </div>
+
+          <h3 id="p2p-chat">7.2 发起与聊天</h3>
+          <ol>
+            <li>整条消息只发：<code>@对方用户名</code>（例如 <code>@alice</code>）。</li>
+            <li>对方收到「对话请求」，回复 <code>/同意</code> 或 <code>/拒绝</code>。</li>
+            <li>同意后双方直接发文字；对方会看到类似 <code>[alice] 你好</code> 的前缀。</li>
+            <li>任一方发送 <code>/断开</code> 结束；长时间无消息（默认约 30 分钟）也会自动结束，并恢复与 AI 角色扮演。</li>
+          </ol>
+          <div class="card warn">
+            <div class="label">限制</div>
+            <ul style="margin-bottom:0">
+              <li>会话中仅支持<strong>文字</strong>；图片 / 语音会提示不支持。</li>
+              <li><code>hello @alice</code> 这类夹在句子里的写法<strong>不会</strong>发起请求。</li>
+              <li>每个账号同一时间通常只能有一个进行中的请求或会话。</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="sec" id="block">
+          <h2><span class="num">8</span> 黑名单</h2>
+          <p>不想被某人 @ 时可以拉黑（双向无法再建立用户对话）。</p>
+          <ul>
+            <li><strong>网页</strong>：用户中心 → 用户对话 → 黑名单 → 输入用户名拉黑 / 取消拉黑。</li>
+            <li><strong>微信</strong>：<code>/拉黑 用户名</code>、<code>/取消拉黑 用户名</code>、<code>/黑名单</code>。</li>
+          </ul>
+          <p>拉黑会结束与对方进行中的用户对话请求或会话。</p>
+        </section>
+
+        <section class="sec" id="commands">
+          <h2><span class="num">9</span> 微信命令一览</h2>
+          <table class="cmd">
+            <thead>
+              <tr><th>命令</th><th>说明</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>/绑定 CODE</code></td><td>认领用户中心生成的绑定码</td></tr>
+              <tr><td><code>/解绑</code></td><td>解除微信与 LINUX DO 的绑定</td></tr>
+              <tr><td><code>/我的身份</code></td><td>查看绑定用户名与当前状态</td></tr>
+              <tr><td><code>@用户名</code></td><td>整条消息：向对方发起对话请求</td></tr>
+              <tr><td><code>/同意</code></td><td>同意入站对话请求</td></tr>
+              <tr><td><code>/拒绝</code></td><td>拒绝入站对话请求</td></tr>
+              <tr><td><code>/取消请求</code></td><td>取消自己发出的请求</td></tr>
+              <tr><td><code>/断开</code></td><td>结束当前用户对话，恢复 AI</td></tr>
+              <tr><td><code>/拉黑 用户名</code></td><td>拉黑（可选前缀 <code>@</code>）</td></tr>
+              <tr><td><code>/取消拉黑 用户名</code></td><td>移出黑名单</td></tr>
+              <tr><td><code>/黑名单</code></td><td>查看黑名单列表</td></tr>
+              <tr><td><code>/角色 …</code></td><td>不支持自助切换；由主人在后台分配</td></tr>
+            </tbody>
+          </table>
+          <p>未匹配上述命令、且不在用户会话中时，消息会交给 AI 角色扮演回复（需已批准）。</p>
+        </section>
+
+        <section class="sec" id="proactive">
+          <h2><span class="num">10</span> 主动联系（可选）</h2>
+          <p>若站点开启了主动联系，空闲一段时间后角色可能主动给用户发消息。</p>
+          <ol>
+            <li>机器人卡片中打开「主动找用户聊天」并保存参数。</li>
+            <li>对具体微信用户勾选「允许主动」。</li>
+            <li>对方须曾经聊过机器人（有会话凭证）。</li>
+          </ol>
+          <p>具体是否开启由站点管理员配置；个人用户仅能控制自己的机器人与好友开关。</p>
+        </section>
+
+        <section class="sec" id="faq">
+          <h2><span class="num">11</span> 常见问题</h2>
+          <h3>对方收不到我的 @ 请求？</h3>
+          <ul>
+            <li>双方是否都完成了 <code>/绑定</code>？</li>
+            <li>对方是否用绑定的微信给机器人发过消息（可达）？</li>
+            <li>是否在黑名单中？用户名是否拼写正确（不区分大小写）？</li>
+            <li>对方是否正忙（已有请求 / 会话）？</li>
+          </ul>
+          <h3>AI 不回复？</h3>
+          <ul>
+            <li>是否已在用户中心批准该微信用户？</li>
+            <li>是否在用户对话会话中？会话内不会走 AI，需先 <code>/断开</code>。</li>
+            <li>发得太快会触发限流提示。</li>
+          </ul>
+          <h3>能发图片 / 语音吗？</h3>
+          <ul>
+            <li>
+              <strong>语音</strong>：微信自带的语音转文字会一并送到机器人，所以带转写的语音就当文字聊。
+            </li>
+            <li>
+              <strong>图片</strong>：站点开启「图片理解」后，机器人能看图并据实描述；未开启时会直接告诉你看不了。
+            </li>
+            <li><strong>视频 / 文件</strong>：暂时看不了，机器人会说明并请你用文字描述。</li>
+          </ul>
+          <h3>绑定码无效？</h3>
+          <p>绑定码有时效且只能用一次。请在用户中心重新生成，再发 <code>/绑定 新码</code>。</p>
+          <h3>机器人突然不回？</h3>
+          <p>可能是微信会话过期。在用户中心对该机器人使用<strong>重新扫码</strong>刷新凭证（数据会保留）。</p>
+          <div class="card" style="margin-top:20px">
+            <div class="label">需要帮助</div>
+            <p style="margin:0">
+              进入 <a href="/app">用户中心</a> 管理机器人与绑定；站点首页见
+              <a href="/">/</a>。管理员后台为 <a href="/admin">/admin</a>（需管理员权限）。
+            </p>
+          </div>
+        </section>
+      </article>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap foot-inner">
+      <span>WeChat-AI · 用户使用文档</span>
+      <span>
+        <a href="/">首页</a> ·
+        <a href="/docs">文档</a> ·
+        <a href="/app">用户中心</a>
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var btn = document.getElementById("themeToggle");
+      function applyTheme(t) {
+        root.setAttribute("data-theme", t);
+        var meta = document.getElementById("themeColor");
+        if (meta) meta.setAttribute("content", t === "dark" ? "#000000" : "#f5f5f7");
+      }
+      function current() {
+        return root.getAttribute("data-theme") === "dark" ? "dark" : "light";
+      }
+      if (btn) {
+        btn.addEventListener("click", function () {
+          var next = current() === "dark" ? "light" : "dark";
+          try { localStorage.setItem("wa_theme", next); } catch (e) {}
+          root.removeAttribute("data-theme-pref");
+          applyTheme(next);
+        });
+      }
+      applyTheme(current());
+
+      // TOC active section
+      var links = Array.prototype.slice.call(document.querySelectorAll(".toc a[href^='#']"));
+      var map = {};
+      links.forEach(function (a) {
+        var id = a.getAttribute("href").slice(1);
+        if (id) map[id] = a;
+      });
+      var sections = Object.keys(map)
+        .map(function (id) { return document.getElementById(id); })
+        .filter(Boolean);
+      function setActive() {
+        var y = window.scrollY + 100;
+        var cur = sections[0];
+        for (var i = 0; i < sections.length; i++) {
+          if (sections[i].offsetTop <= y) cur = sections[i];
+        }
+        links.forEach(function (a) { a.classList.remove("active"); });
+        if (cur && map[cur.id]) map[cur.id].classList.add("active");
+        var nav = document.querySelector(".nav");
+        if (nav) nav.classList.toggle("scrolled", window.scrollY > 4);
+      }
+      window.addEventListener("scroll", setActive, { passive: true });
+      setActive();
+    })();
+
+    // Staggered entrance: reveal .stagger groups when they scroll into view.
+    // Kept in its own IIFE + try/catch: .stagger children sit at opacity:0 until
+    // "in-view" lands, so a throw anywhere above (or in the IO constructor) must
+    // not be able to strand page content invisible.
+    (function () {
+      var staggers = Array.prototype.slice.call(document.querySelectorAll(".stagger"));
+      function revealAll() {
+        staggers.forEach(function (el) { el.classList.add("in-view"); });
+      }
+      try {
+        if (!("IntersectionObserver" in window)) { revealAll(); return; }
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (en) {
+              if (en.isIntersecting) {
+                en.target.classList.add("in-view");
+                io.unobserve(en.target);
+              }
+            });
+          },
+          { rootMargin: "0px 0px -10% 0px", threshold: 0.05 }
+        );
+        staggers.forEach(function (el) { io.observe(el); });
+      } catch (e) {
+        revealAll();
+      }
+    })();
+
+    /* 只有 Chromium 会真正渲染 backdrop-filter 里的 SVG 滤镜引用；Safari / Firefox
+       语法能解析但渲染为空，会把整条 backdrop-filter 作废——必须运行时判定而不是 @supports。
+       navigator.userAgentData 目前仅 Chromium 实现，用作引擎判定。
+       再要求 pointer:fine：位移滤镜在滚动时每帧重算，中低端手机上代价太高。 */
+    (function () {
+      try {
+        var fine = matchMedia("(pointer: fine)").matches;
+        var chromium = !!navigator.userAgentData;
+        if (chromium && fine && CSS.supports("backdrop-filter", "url(#x)")) {
+          document.documentElement.classList.add("wa-lens");
+        }
+      } catch (e) {}
+    })();
+
+    /* 把滚动深度写成 0..1 的进度值，驱动吸顶层的模糊与底色。rAF 节流，passive 监听。 */
+    (function () {
+      var root = document.documentElement;
+      var ticking = false;
+      function apply() {
+        ticking = false;
+        var y = window.scrollY || root.scrollTop || 0;
+        root.style.setProperty("--glass-progress", Math.min(1, y / 80).toFixed(3));
+      }
+      addEventListener(
+        "scroll",
+        function () {
+          if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(apply);
+          }
+        },
+        { passive: true },
+      );
+      apply();
+    })();
+  </script>
+</body>
+</html>

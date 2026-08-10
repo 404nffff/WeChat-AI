@@ -1,0 +1,87 @@
+# WeChat-AI
+#
+#   1. 配置 .env（REDIS_URL / LINUXDO_* / LLM_* / PUBLIC_BASE_URL）
+#      用户自定义 LLM + 联网搜索：TOOLS_BASE_URL / TOOLS_API_KEY → wechat-ai-tools
+#   2. pnpm docker:up
+#      升版 + 本地 OTA pack + compose up --build
+#      通道发布：/admin → 上传 files.json（无需 CLI Cookie）
+#      （直接 docker compose up -d --build 不会升版本、不会 pack）
+#   3. 打开 https://你的域名/app
+#
+# 注意：容器内 WECHAT_AI_HOST 强制 0.0.0.0；OAuth 回调请用公网域名。
+#
+# 多节点：本 compose 默认单副本。多机时在各服务器分别 docker run 同镜像，
+# 共享 REDIS_URL / PUBLIC_BASE_URL（主域名），每机设唯一 WORKER_ID，
+# 主域名反代用 cloudflare-worker（静态 ORIGINS）。见 docs/docker.md。
+#
+# 工具网关（可选 profile tools）：
+#   docker compose --profile tools up -d --build
+#   主站 .env: TOOLS_BASE_URL=http://wechat-ai-tools:7860  TOOLS_API_KEY=...
+
+services:
+  wechat-ai:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: wechat-ai:latest
+    container_name: wechat-ai
+    restart: unless-stopped
+    # Give the graceful shutdown time to release bot leases before SIGKILL
+    stop_grace_period: 30s
+    ports:
+      - "${WECHAT_AI_PORT:-8787}:8787"
+    env_file:
+      - .env
+    environment:
+      WECHAT_AI_HOST: "0.0.0.0"
+      WECHAT_AI_PORT: "8787"
+      NODE_ENV: production
+      # 单机默认；多节点请在各机覆盖为唯一 ID
+      # WORKER_ID: node-01
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:8787/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 30s
+      timeout: 8s
+      retries: 3
+      start_period: 50s
+
+  # User custom LLM egress + web search (platform LLM stays on wechat-ai)
+  wechat-ai-tools:
+    profiles: ["tools"]
+    build:
+      context: ./huggingface/wechat-ai-tools
+      dockerfile: Dockerfile
+    image: wechat-ai-tools:latest
+    container_name: wechat-ai-tools
+    restart: unless-stopped
+    ports:
+      - "${TOOLS_PORT:-7860}:7860"
+    environment:
+      HOST: "0.0.0.0"
+      PORT: "7860"
+      TOOLS_API_KEY: "${TOOLS_API_KEY:-}"
+      ALLOW_REQUEST_UPSTREAM: "true"
+      UPSTREAM_DENY_PRIVATE: "true"
+      SEARCH_PROVIDER: "${SEARCH_PROVIDER:-ddg}"
+      # Optional demo fallback only (main site uses its own LLM_* for platform)
+      UPSTREAM_LLM_BASE_URL: "${UPSTREAM_LLM_BASE_URL:-}"
+      UPSTREAM_LLM_API_KEY: "${UPSTREAM_LLM_API_KEY:-}"
+      UPSTREAM_LLM_MODEL: "${UPSTREAM_LLM_MODEL:-gpt-4o-mini}"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:7860/health', timeout=5)",
+        ]
+      interval: 30s
+      timeout: 8s
+      retries: 3
+      start_period: 25s
