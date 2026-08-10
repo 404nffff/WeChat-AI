@@ -2,7 +2,7 @@
 # WeChat-AI (iLink + Redis + LINUX DO OAuth)
 #
 # Prefer host wrappers (bump + OTA pack + docker):
-#   pnpm docker:build -- -- docker build -t e51l6pwpe/wxai:latest .
+#   pnpm docker:build -- -- docker build -t your-dockerhub-user/wechat-ai:latest .
 #   pnpm docker:up
 # Publish channel: /admin → 上传通道包 (dist/release/<ver>/files.json)
 # Plain `docker build` does NOT bump or pack.

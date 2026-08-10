@@ -6,7 +6,7 @@
  *
  *   pnpm docker:build
  *   pnpm docker:up
- *   node scripts/docker-build.mjs -- docker build -t e51l6pwpe/wxai:latest .
+ *   node scripts/docker-build.mjs -- docker build -t your-dockerhub-user/wechat-ai:latest .
  */
 import { spawnSync } from "node:child_process";
 import path from "node:path";
@@ -39,8 +39,8 @@ Mode:
   -- <cmd...>         custom command after bump/pack
 
 Examples:
-  pnpm docker:build -- --bump minor -- docker build -t e51l6pwpe/wxai:latest .
-  pnpm docker:build -- -- docker build -t e51l6pwpe/wxai:latest .
+  pnpm docker:build -- --bump minor -- docker build -t your-dockerhub-user/wechat-ai:latest .
+  pnpm docker:build -- -- docker build -t your-dockerhub-user/wechat-ai:latest .
   pnpm docker:build -- --no-channel -- docker build -t wechat-ai .
 
 Note: everything after the FIRST \`--\` goes to pnpm; script flags such as
