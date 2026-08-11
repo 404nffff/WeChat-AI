@@ -30,6 +30,19 @@ PUBLIC_BASE_URL=http://127.0.0.1:8787
 
 `LINUXDO_ADMIN_IDS`：匹配 OAuth 返回的 **用户 id** 或 **username** 即视为管理员。
 
+### 关闭 LINUX DO 登录
+
+如需禁用 LINUX DO Connect 登录（仅保留用户名密码/邀请码）：
+
+```env
+LINUXDO_AUTH_ENABLED=false
+```
+
+- 前端（`/app`、`/admin`）隐藏「使用 LINUX DO 登录」按钮
+- `/api/v1/auth/login` 与 `/api/v1/auth/callback` 一律返回 503
+- 即使 `LINUXDO_CLIENT_ID/SECRET` 仍配置着也不生效
+- 该开关可在 `/admin → 设置` 运行时切换，无需重启（`localAuthEnabled` 同理）
+
 ## 3. 流程
 
 1. 用户访问 `/app` → 可用 **用户名密码** 登录，或点「LINUX DO 登录」

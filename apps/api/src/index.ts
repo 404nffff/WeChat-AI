@@ -451,7 +451,9 @@ async function main(): Promise<void> {
   );
   console.log(
     oauth
-      ? `[oauth] LINUX DO enabled → ${oauth.redirectUri}`
+      ? `[oauth] LINUX DO enabled → ${oauth.redirectUri}${
+          cfg.linuxdoAuthEnabled ? "" : " (登录已关闭 LINUXDO_AUTH_ENABLED=false)"
+        }`
       : "[oauth] LINUX DO 未配置（设置 LINUXDO_CLIENT_ID/SECRET/REDIRECT_URI）",
   );
 

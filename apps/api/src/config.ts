@@ -252,6 +252,12 @@ export interface AppConfig {
   inviteQuotaMax: number;
   firstUserIsAdmin: boolean;
   /**
+   * LINUX DO Connect OAuth login. Default on when LINUXDO_CLIENT_* configured.
+   * Set LINUXDO_AUTH_ENABLED=false to disable the "使用 LINUX DO 登录" path
+   * entirely (login + callback both refuse) even when credentials exist.
+   */
+  linuxdoAuthEnabled: boolean;
+  /**
    * Optional ops labels for multi-node fleet display (not public URLs).
    * WORKER_ID itself is read by BotWorkerManager from process.env.
    */
@@ -428,6 +434,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
     inviteQuotaWindowHours: Number(env.INVITE_QUOTA_WINDOW_HOURS ?? "24"),
     inviteQuotaMax: Number(env.INVITE_QUOTA_MAX ?? "3"),
     firstUserIsAdmin: env.FIRST_USER_IS_ADMIN !== "false",
+    linuxdoAuthEnabled: env.LINUXDO_AUTH_ENABLED !== "false",
     llmBaseUrl: env.LLM_BASE_URL ?? "https://api.openai.com/v1",
     llmApiKey: env.LLM_API_KEY ?? "",
     llmModel: env.LLM_MODEL ?? "gpt-4o-mini",

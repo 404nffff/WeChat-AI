@@ -75,6 +75,9 @@ async function main(): Promise<void> {
     exitCode = 1;
   } else {
     ok(`OAuth redirect=${oauth.redirectUri}`);
+    if (!cfg.linuxdoAuthEnabled) {
+      warn("LINUXDO_AUTH_ENABLED=false — LINUX DO 登录已关闭（login/callback 拒绝）");
+    }
   }
   if (cfg.adminIds.size === 0) {
     warn("LINUXDO_ADMIN_IDS 为空 — 无人自动成为管理员");

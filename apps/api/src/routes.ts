@@ -648,7 +648,7 @@ export async function registerRoutes(
     setPublicCache(reply, CC_AUTH_CONFIG, CDN_AUTH_CONFIG);
     const oauth = loadLinuxDoConfig();
     return {
-      oauthEnabled: Boolean(oauth),
+      oauthEnabled: Boolean(oauth) && ctx.cfg.linuxdoAuthEnabled,
       provider: "linux.do",
       localAuthEnabled: ctx.cfg.localAuthEnabled,
       inviteRequiredForLocal: ctx.cfg.inviteRequiredForLocal,
@@ -658,6 +658,11 @@ export async function registerRoutes(
 
   app.get("/api/v1/auth/login", async (req, reply) => {
     const oauth = loadLinuxDoConfig();
+    if (!ctx.cfg.linuxdoAuthEnabled) {
+      return reply
+        .code(503)
+        .send({ error: "LINUX DO 登录已关闭（LINUXDO_AUTH_ENABLED=false）" });
+    }
     if (!oauth) {
       return reply
         .code(503)
@@ -671,6 +676,9 @@ export async function registerRoutes(
 
   app.get("/api/v1/auth/callback", async (req, reply) => {
     const oauth = loadLinuxDoConfig();
+    if (!ctx.cfg.linuxdoAuthEnabled) {
+      return reply.code(503).type("text/plain; charset=utf-8").send("LINUX DO 登录已关闭");
+    }
     if (!oauth) return reply.code(503).send("oauth not configured");
     const q = req.query as { code?: string; state?: string; error?: string };
     if (q.error) return reply.code(400).send(`oauth error: ${q.error}`);

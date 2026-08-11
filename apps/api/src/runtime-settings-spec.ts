@@ -73,6 +73,7 @@ export type RuntimeSettingKey =
   | "tryChatMaxHistory"
   | "personaForkEnabled"
   // auth / invites
+  | "linuxdoAuthEnabled"
   | "localAuthEnabled"
   | "passwordMinLength"
   | "inviteRequiredForLocal"
@@ -743,6 +744,14 @@ export const SETTING_SPECS: SettingSpec[] = [
   },
 
   // ── 注册与邀请 ──
+  {
+    key: "linuxdoAuthEnabled",
+    env: "LINUXDO_AUTH_ENABLED",
+    group: "auth",
+    label: "启用 LINUX DO 登录",
+    type: "bool",
+    hint: "关闭后「使用 LINUX DO 登录」按钮隐藏，login/callback 一律拒绝（需已配置 LINUXDO_CLIENT_*）",
+  },
   {
     key: "localAuthEnabled",
     env: "LOCAL_AUTH_ENABLED",

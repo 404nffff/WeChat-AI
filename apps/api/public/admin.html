@@ -8319,7 +8319,18 @@
         }
       } catch {
         $("gate").classList.add("show");
+        hideAdminOauthBtn();
       }
+    }
+
+    async function hideAdminOauthBtn() {
+      try {
+        const cfg = await api("/api/v1/auth/config");
+        if (cfg && cfg.oauthEnabled === false) {
+          const btn = $("loginBtn");
+          if (btn) btn.style.display = "none";
+        }
+      } catch (_) {}
     }
 
     function showTabError(tab, err) {
