@@ -40,10 +40,6 @@ export const CC_PRIVATE_STICKER =
  */
 export const CC_PRIVATE_QR = "private, no-store" as const;
 
-/** Auth config (static-ish). */
-export const CC_AUTH_CONFIG = "public, max-age=60" as const;
-export const CDN_AUTH_CONFIG = "public, max-age=300" as const;
-
 /** Default for authenticated / dynamic APIs. */
 export const CC_PRIVATE_NO_STORE = "private, no-store" as const;
 

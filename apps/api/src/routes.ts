@@ -193,16 +193,15 @@ import {
   StickerSecurityError,
 } from "./sticker-security.js";
 import {
-  CC_AUTH_CONFIG,
   CC_CDN_STICKER,
   CC_NO_STORE,
   CC_PRIVATE_NO_STORE,
   CC_PRIVATE_QR,
   CC_PRIVATE_STICKER,
-  CDN_AUTH_CONFIG,
   CDN_CDN_STICKER,
   etagFromHash,
   ifNoneMatchHits,
+  setPrivateNoStore,
   setPublicCache,
 } from "./cache-headers.js";
 import { qrSvg } from "./qrcode.js";
@@ -645,7 +644,7 @@ export async function registerRoutes(
   const authInvitePeekLimiter = new RateLimiter(40, 60_000);
 
   app.get("/api/v1/auth/config", async (_req, reply) => {
-    setPublicCache(reply, CC_AUTH_CONFIG, CDN_AUTH_CONFIG);
+    setPrivateNoStore(reply);
     const oauth = loadLinuxDoConfig();
     return {
       oauthEnabled: Boolean(oauth) && ctx.cfg.linuxdoAuthEnabled,

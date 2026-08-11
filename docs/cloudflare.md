@@ -24,7 +24,7 @@
 | `/app` `/admin` | `public, max-age=60` | `max-age=3600, swr=86400` | 无（壳静态；数据走 API） |
 | `/og.jpg` | `public, max-age=86400, immutable` | `max-age=604800` | 无 |
 | `/cdn/s/:id?v=` | `public, max-age=31536000, immutable` | 同左 | **无**；仅 public+approved+enabled |
-| `/api/v1/auth/config` | `public, max-age=60` | `max-age=300` | 无 |
+| `/api/v1/auth/config` | `private, no-store` | — | 无（登录方式开关需实时） |
 | `/health` | `no-store` | — | 无 |
 | 其余 `/api/v1/**` | `private, no-store` | — | Cookie 会话 |
 | 鉴权表情图 | `private, no-store` | — | 登录 / admin |
@@ -55,7 +55,7 @@ HTML 带 `ETag` + `Cache-Tag: html-shell`；公开表情带 `Cache-Tag: sticker-
 
 - **Name:** `bypass-api-private`  
 - **When:**  
-  `(starts_with(http.request.uri.path, "/api/v1/") and not http.request.uri.path eq "/api/v1/auth/config")`  
+  `starts_with(http.request.uri.path, "/api/v1/")`  
   或方法为 `POST` / `PUT` / `PATCH` / `DELETE`  
 - **Then:** Cache eligibility = **Bypass cache**
 
@@ -84,11 +84,9 @@ HTML 带 `ETag` + `Cache-Tag: html-shell`；公开表情带 `Cache-Tag: sticker-
 - **Then:** Eligible for cache；Edge TTL Respect origin；**Ignore cookies**  
 - Cache key **保留 query string**（`v=` 内容哈希）
 
-### Rule 5 — auth/config 短缓存
+### Rule 5 — ~~auth/config 短缓存~~（已移除）
 
-- **Name:** `cache-auth-config`  
-- **When:** `http.request.uri.path eq "/api/v1/auth/config"`  
-- **Then:** Eligible for cache；Edge TTL 5 minutes 或 Respect origin；Ignore cookies
+> `/api/v1/auth/config` 现返回 `no-store`（登录方式开关需实时生效，不应缓存）。Cloudflare 默认尊重源站 `Cache-Control`，无 `public` 的响应不进共享缓存，故该路径**无需**任何缓存规则。
 
 ### 默认
 
