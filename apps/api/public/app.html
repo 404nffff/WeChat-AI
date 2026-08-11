@@ -4529,10 +4529,9 @@
         btn.onclick = async () => {
           const key = btn.dataset.as;
           const [botAccountId, peerId] = key.split("|");
-          const sel =
-            btn.closest(".row-actions, .mcard, tr")?.querySelector(
-              `select[data-asg="${CSS.escape(key)}"]`,
-            ) || document.querySelector(`select[data-asg="${CSS.escape(key)}"]`);
+          const sel = btn
+            .closest(".mcard, tr")
+            ?.querySelector(`select[data-asg="${CSS.escape(key)}"]`);
           if (!sel?.value) {
             toast("请先在人设广场添加人设", true);
             return;
