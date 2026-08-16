@@ -13,6 +13,9 @@ Connects directly to Tencent **iLink**, stores data in **remote Redis**, and aut
 
 </div>
 
+<!-- star-history:start -->
+<!-- star-history:end -->
+
 ---
 
 ## 功能 Features
