@@ -21,3 +21,4 @@ jobs:
         with:
           title: WeChat-AI growth
           output: assets/repo-growth.svg
+          metrics: stars,forks
