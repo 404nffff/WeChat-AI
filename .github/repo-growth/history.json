@@ -1,17 +1,53 @@
 {
   "version": 1,
   "repository": "SMNETSTUDIO/WeChat-AI",
-  "updatedAt": "2026-08-16T12:59:47.540Z",
-  "backfilledAt": "",
+  "updatedAt": "2026-08-16T13:25:42.875Z",
+  "backfilledAt": "2026-08-16T13:25:42.875Z",
   "totals": {
     "downloads": 0
   },
   "assets": {},
   "points": [
     {
+      "date": "2026-08-10",
+      "stars": 687,
+      "forks": 503,
+      "downloads": null
+    },
+    {
+      "date": "2026-08-11",
+      "stars": 1412,
+      "forks": 1040,
+      "downloads": null
+    },
+    {
+      "date": "2026-08-12",
+      "stars": 1516,
+      "forks": 1122,
+      "downloads": null
+    },
+    {
+      "date": "2026-08-13",
+      "stars": 1680,
+      "forks": 1215,
+      "downloads": null
+    },
+    {
+      "date": "2026-08-14",
+      "stars": 1707,
+      "forks": 1225,
+      "downloads": null
+    },
+    {
+      "date": "2026-08-15",
+      "stars": 1733,
+      "forks": 1241,
+      "downloads": null
+    },
+    {
       "date": "2026-08-16",
       "stars": 1760,
-      "forks": 1255,
+      "forks": 1256,
       "downloads": 0
     }
   ]
