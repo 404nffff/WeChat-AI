@@ -21,5 +21,3 @@ jobs:
         with:
           title: WeChat-AI growth
           output: assets/repo-growth.svg
-          backfill: true
-          token: ${{ secrets.REPO_GROWTH_BACKFILL_TOKEN }}
