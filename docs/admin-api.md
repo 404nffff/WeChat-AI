@@ -7,7 +7,7 @@ Auth: **Cookie 会话**（OAuth 登录后 `wa_session`），`credentials: includ
 
 | Method | Path | 说明 |
 |--------|------|------|
-| GET | `/api/v1/auth/config` | `{ oauthEnabled, provider, localAuthEnabled, inviteRequiredForLocal, passwordMinLength }` |
+| GET | `/api/v1/auth/config` | `{ oauthEnabled, provider, localAuthEnabled, inviteRequiredForLocal, bootstrapAvailable, passwordMinLength }`<br>`bootstrapAvailable=true` 表示库中尚无用户且未配置管理员，首个本地注册可免邀请码 |
 | GET | `/api/v1/auth/login` | 跳转 LINUX DO OAuth |
 | GET | `/api/v1/auth/callback` | OAuth 回调（新 OAuth 用户**不需要**邀请码） |
 | POST | `/api/v1/auth/register` | 本地注册：`{ inviteCode, username, password, name? }` → cookie |

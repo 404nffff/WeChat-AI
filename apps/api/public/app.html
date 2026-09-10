@@ -2764,12 +2764,13 @@
       </div>
       <div id="authRegisterPanel" style="display:none" role="tabpanel" aria-labelledby="authTabRegister">
         <form class="auth-form" id="registerForm" autocomplete="on">
-          <label>邀请码
+          <label>邀请码<span id="regInviteOptional" style="display:none;font-weight:400;color:var(--text-tertiary)">（可选）</span>
             <div class="auth-field">
               <i class="bi bi-ticket-perforated field-icon" aria-hidden="true"></i>
               <input id="regInvite" name="invite" autocomplete="off" required maxlength="32" placeholder="好友分享的邀请码" spellcheck="false" autocapitalize="characters" enterkeyhint="next" />
             </div>
           </label>
+          <p class="auth-hint" id="regInviteHint" style="display:none"></p>
           <label>用户名
             <div class="auth-field">
               <i class="bi bi-at field-icon" aria-hidden="true"></i>
@@ -3921,6 +3922,34 @@
       });
     }
 
+    // Mirror the backend's invite rule (see /api/v1/auth/config): a code is only
+    // mandatory when invites are enabled AND this isn't the first-user
+    // bootstrap. Hard-requiring one here made a fresh local-only deployment
+    // unregisterable — nobody exists yet who could issue an invite.
+    let registerInviteRequired = true;
+
+    function applyRegisterInviteRule(cfg) {
+      const bootstrap = cfg?.bootstrapAvailable === true;
+      registerInviteRequired =
+        cfg?.inviteRequiredForLocal !== false && !bootstrap;
+      const input = $("regInvite");
+      if (input) {
+        input.required = registerInviteRequired;
+        if (!registerInviteRequired && !input.readOnly) {
+          input.placeholder = bootstrap ? "首个管理员无需邀请码" : "无需邀请码，可留空";
+        }
+      }
+      const optional = $("regInviteOptional");
+      if (optional) optional.style.display = registerInviteRequired ? "none" : "";
+      const hint = $("regInviteHint");
+      if (hint) {
+        hint.textContent = bootstrap
+          ? "本站尚无用户，首个注册的账号将自动成为管理员，无需邀请码。"
+          : "";
+        hint.style.display = bootstrap ? "" : "none";
+      }
+    }
+
     async function showLoginGate() {
       $("bootSplash").style.display = "none";
       $("loginGate").style.display = "flex";
@@ -3930,6 +3959,7 @@
       try {
         const cfg = await api("/api/v1/auth/config");
         if (cfg) {
+          applyRegisterInviteRule(cfg);
           if (cfg.localAuthEnabled === false) {
             setAuthTab("login");
             if ($("authTabs")) $("authTabs").style.display = "none";
@@ -4053,7 +4083,7 @@
         const name = ($("regName")?.value || "").trim();
         const password = $("regPassword")?.value || "";
         const password2 = $("regPassword2")?.value || "";
-        if (!inviteCode) {
+        if (registerInviteRequired && !inviteCode) {
           showAuthError("请填写邀请码");
           return;
         }

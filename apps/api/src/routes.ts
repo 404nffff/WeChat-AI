@@ -205,6 +205,7 @@ import {
   setPublicCache,
 } from "./cache-headers.js";
 import { qrSvg } from "./qrcode.js";
+import { canBootstrapFirstAdmin } from "./auth-bootstrap.js";
 import { RateLimiter } from "./rate-limit.js";
 import { RuntimeSettingsUnavailableError } from "./runtime-config.js";
 
@@ -646,11 +647,29 @@ export async function registerRoutes(
   app.get("/api/v1/auth/config", async (_req, reply) => {
     setPrivateNoStore(reply);
     const oauth = loadLinuxDoConfig();
+    // Publish the register endpoint's invite waiver so the register form can
+    // drop its invite field instead of blocking a fresh local-only deployment
+    // on a code nobody can issue yet.
+    //
+    // canBootstrapFirstAdmin stays the authority; the two config terms repeated
+    // in front of it are only a short-circuit, because this endpoint is
+    // unauthenticated, uncached and hit on every page load, and no user count
+    // can flip the answer once either of them is false. Don't fold them away.
+    const bootstrapAvailable =
+      ctx.cfg.localAuthEnabled &&
+      ctx.cfg.firstUserIsAdmin &&
+      ctx.cfg.adminIds.size === 0 &&
+      canBootstrapFirstAdmin({
+        totalUsers: await countUsers(ctx.db),
+        firstUserIsAdmin: ctx.cfg.firstUserIsAdmin,
+        adminIdCount: ctx.cfg.adminIds.size,
+      });
     return {
       oauthEnabled: Boolean(oauth) && ctx.cfg.linuxdoAuthEnabled,
       provider: "linux.do",
       localAuthEnabled: ctx.cfg.localAuthEnabled,
       inviteRequiredForLocal: ctx.cfg.inviteRequiredForLocal,
+      bootstrapAvailable,
       passwordMinLength: ctx.cfg.passwordMinLength,
     };
   });
@@ -774,8 +793,11 @@ export async function registerRoutes(
       countUsers(ctx.db),
     ]);
     const needInvite = ctx.cfg.inviteRequiredForLocal;
-    const bootstrap =
-      totalUsers === 0 && ctx.cfg.firstUserIsAdmin && ctx.cfg.adminIds.size === 0;
+    const bootstrap = canBootstrapFirstAdmin({
+      totalUsers,
+      firstUserIsAdmin: ctx.cfg.firstUserIsAdmin,
+      adminIdCount: ctx.cfg.adminIds.size,
+    });
 
     let inviteRec: Awaited<ReturnType<typeof peekInviteCode>> = null;
     if (needInvite && !bootstrap) {

@@ -69,7 +69,11 @@ LINUXDO_ADMIN_IDS=             # 留空，交给 FIRST_USER_IS_ADMIN 引导
 2. 打开 `/app` → **注册**（第一个注册用户因 `FIRST_USER_IS_ADMIN` 自动成为超管）
    - 若 `INVITE_REQUIRED_FOR_LOCAL=true` 且是第一个用户（库中尚无任何用户），
      `bootstrap` 逻辑会跳过邀请码要求，直接成为管理员
-3. 用该账号登录 `/admin`，进入 **用户** 页即可给其他账号「授予管理员」
+   - 注册页会读 `/api/v1/auth/config` 的 `bootstrapAvailable`，此时邀请码
+     标为「可选」并提示「首个管理员无需邀请码」，留空即可提交
+3. 用该账号登录 `/admin`：未登录时 `/admin` 停在本页的用户名/密码 Gate，
+   不会再跳去已关闭的 LINUX DO 登录（仅 `LOCAL_AUTH_ENABLED=false` 时才跳 OAuth）
+4. 进入 **用户** 页即可给其他账号「授予管理员」
 
 > `LINUXDO_ADMIN_IDS` 为空且首个本地用户注册时，`createLocalUser` 的
 > `bootstrapAdmin` 分支（`firstUserIsAdmin && totalUsers===0 && adminIds.size===0`）

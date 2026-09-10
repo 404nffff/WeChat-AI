@@ -3671,7 +3671,7 @@
     <div class="hero" id="gateInner">
       <div class="brand-mark" aria-hidden="true"><i class="bi bi-robot"></i></div>
       <h1>管理后台</h1>
-      <p>管理员登录。可用用户名密码或 LINUX DO。</p>
+      <p id="gateSub">管理员登录。可用用户名密码或 LINUX DO。</p>
       <form id="adminPasswordForm">
         <label>用户名
           <input id="adminLoginUser" autocomplete="username" />
@@ -5563,6 +5563,52 @@
         (state.latencySamples.length || 1);
       el.title = `最近 ${Math.round(ms)}ms · 近 ${state.latencySamples.length} 次均值 ${Math.round(avg)}ms`;
     }
+    // Cached: the dashboard fires several requests at once, and a burst of 401s
+    // should resolve the login mode with a single request. Deliberately a bare
+    // fetch rather than api() — this runs *from* api()'s 401 branch and must not
+    // be able to recurse back into it.
+    let authConfigPromise = null;
+    function loadAuthConfig() {
+      if (!authConfigPromise) {
+        authConfigPromise = fetch("/api/v1/auth/config", { credentials: "include" })
+          .then((r) => (r.ok ? r.json() : null))
+          .catch(() => null)
+          .then((cfg) => {
+            // Don't cache a blip: the fallback gate offers both login methods,
+            // and on an OAuth-disabled instance that button just 503s. Let the
+            // next caller ask again so the gate can correct itself.
+            if (!cfg) authConfigPromise = null;
+            return cfg;
+          });
+      }
+      return authConfigPromise;
+    }
+
+    // A 401 only means "no usable session". Redirecting to LINUX DO
+    // unconditionally dead-ends a local-auth deployment, because
+    // /api/v1/auth/login answers 503 when LINUXDO_AUTH_ENABLED=false. Prefer the
+    // password gate this page already has whenever local auth is available, and
+    // keep the OAuth bounce for OAuth-only setups.
+    let unauthorizedHandled = false;
+    async function handleUnauthorized() {
+      if (unauthorizedHandled) return;
+      unauthorizedHandled = true;
+      const cfg = await loadAuthConfig();
+      if (!cfg || cfg.localAuthEnabled !== false) {
+        // Only an expiry deserves the toast; arriving logged-out is normal.
+        if (state.me) toast("登录已过期，请重新登录", true);
+        state.me = null;
+        await showAdminGate(cfg);
+        return;
+      }
+      toast("登录已过期，请重新登录", true);
+      setTimeout(() => {
+        location.href =
+          "/api/v1/auth/login?redirect=" +
+          encodeURIComponent("/admin" + (location.hash || ""));
+      }, 600);
+    }
+
     async function api(path, opts = {}) {
       setLoading(true);
       // Heavy admin lists (bots/users/dashboard) need more headroom on remote Redis fleets
@@ -5602,10 +5648,7 @@
             : Date.now();
         if (!opts.silentLatency) setApiLatency(t1 - t0);
         if (res.status === 401) {
-          toast("登录已过期，请重新登录", true);
-          setTimeout(() => {
-            location.href = "/api/v1/auth/login?redirect=" + encodeURIComponent("/admin" + (location.hash || ""));
-          }, 600);
+          handleUnauthorized();
           throw new Error(data.error || "unauthorized");
         }
         if (res.status === 403 && /admin|forbidden/i.test(String(data.error || ""))) {
@@ -8318,19 +8361,28 @@
           await switchTab(tab, true, params);
         }
       } catch {
-        $("gate").classList.add("show");
-        hideAdminOauthBtn();
+        await showAdminGate();
       }
     }
 
-    async function hideAdminOauthBtn() {
-      try {
-        const cfg = await api("/api/v1/auth/config");
-        if (cfg && cfg.oauthEnabled === false) {
-          const btn = $("loginBtn");
-          if (btn) btn.style.display = "none";
-        }
-      } catch (_) {}
+    async function showAdminGate(cfgMaybe) {
+      $("gate").classList.add("show");
+      const cfg = cfgMaybe !== undefined ? cfgMaybe : await loadAuthConfig();
+      if (!cfg) return;
+      const oauth = cfg.oauthEnabled !== false;
+      const local = cfg.localAuthEnabled !== false;
+      const btn = $("loginBtn");
+      if (btn) btn.style.display = oauth ? "" : "none";
+      const form = $("adminPasswordForm");
+      if (form) form.style.display = local ? "" : "none";
+      const sub = $("gateSub");
+      if (sub) {
+        sub.textContent = local
+          ? oauth
+            ? "管理员登录。可用用户名密码或 LINUX DO。"
+            : "管理员登录。请使用用户名密码。"
+          : "管理员登录。请使用 LINUX DO。";
+      }
     }
 
     function showTabError(tab, err) {
