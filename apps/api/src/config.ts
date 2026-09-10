@@ -124,6 +124,12 @@ export interface AppConfig {
   peerRatePerMinute: number;
   repoRoot: string;
   publicBaseUrl: string;
+  /**
+   * Shared secret the LB Worker stamps as `X-WeChat-AI-Proxy-Secret`. Proves a
+   * request really came through the proxy, so its forwarded client IP can be
+   * trusted for rate limiting. Empty = unverified (see client-ip.ts).
+   */
+  originProxySecret: string;
   sessionCookieName: string;
   adminIds: Set<string>;
   cookieSecure: boolean;
@@ -484,6 +490,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
     replyDelayThinkExtraMs: Number(env.REPLY_DELAY_THINK_EXTRA_MS ?? "400"),
     repoRoot,
     publicBaseUrl,
+    originProxySecret: (env.ORIGIN_PROXY_SECRET ?? "").trim(),
     sessionCookieName: env.SESSION_COOKIE_NAME ?? "wa_session",
     adminIds: parseAdminIds(env.LINUXDO_ADMIN_IDS),
     cookieSecure: env.COOKIE_SECURE === "true",

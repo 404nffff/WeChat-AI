@@ -36,6 +36,7 @@ import {
 } from "./static-pages.js";
 import { BotWorkerManager } from "./worker.js";
 import { loadLinuxDoConfig } from "./oauth-linuxdo.js";
+import { proxySecretWarning } from "./client-ip.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -435,6 +436,8 @@ async function main(): Promise<void> {
   });
 
   await app.listen({ host: cfg.host, port: cfg.port });
+  const proxyWarning = proxySecretWarning(cfg.originProxySecret);
+  if (proxyWarning) console.warn(proxyWarning);
   // Max-quality shell compression, off the boot path
   void upgradeStaticCompression(staticAssets).then(
     () => console.log("[static] shells recompressed (brotli q11)"),

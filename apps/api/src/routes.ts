@@ -206,6 +206,7 @@ import {
 } from "./cache-headers.js";
 import { qrSvg } from "./qrcode.js";
 import { canBootstrapFirstAdmin } from "./auth-bootstrap.js";
+import { resolveClientIp } from "./client-ip.js";
 import { RateLimiter } from "./rate-limit.js";
 import { RuntimeSettingsUnavailableError } from "./runtime-config.js";
 
@@ -322,14 +323,17 @@ async function requireUser(
   return user;
 }
 
-function clientIp(req: FastifyRequest): string {
-  return (
-    (req.headers["cf-connecting-ip"] as string | undefined) ||
-    (req.headers["x-forwarded-for"] as string | undefined)?.split(",")[0]
-      ?.trim() ||
-    req.ip ||
-    "unknown"
-  );
+/**
+ * Rate-limit key. Forwarded IPs only count when the request proves it came
+ * through our own LB — otherwise anyone hitting the origin directly picks their
+ * own bucket and the auth limiters stop limiting. See client-ip.ts.
+ */
+function clientIp(req: FastifyRequest, proxySecret: string): string {
+  return resolveClientIp({
+    headers: req.headers,
+    socketIp: req.ip,
+    proxySecret,
+  });
 }
 
 function inviteDefaultsFromCfg(cfg: AppConfig) {
@@ -756,7 +760,7 @@ export async function registerRoutes(
     if (!ctx.cfg.localAuthEnabled) {
       return reply.code(503).send({ error: "local_auth_disabled" });
     }
-    const ip = clientIp(req);
+    const ip = clientIp(req, ctx.cfg.originProxySecret);
     if (!authRegisterLimiter.tryTake(`reg:${ip}`)) {
       return reply.code(429).send({ error: "rate limited" });
     }
@@ -879,7 +883,7 @@ export async function registerRoutes(
       if (!ctx.cfg.localAuthEnabled) {
         return reply.code(503).send({ error: "local_auth_disabled" });
       }
-      const ip = clientIp(req);
+      const ip = clientIp(req, ctx.cfg.originProxySecret);
       const usernameRaw = String(req.body?.username || "").trim();
       const password = String(req.body?.password || "");
       const unameKey = usernameRaw.toLowerCase() || "-";
@@ -927,7 +931,7 @@ export async function registerRoutes(
   app.get<{ Params: { code: string } }>(
     "/api/v1/auth/invite/:code",
     async (req, reply) => {
-      const ip = clientIp(req);
+      const ip = clientIp(req, ctx.cfg.originProxySecret);
       if (!authInvitePeekLimiter.tryTake(`invpeek:${ip}`)) {
         return reply.code(429).send({ error: "rate limited" });
       }

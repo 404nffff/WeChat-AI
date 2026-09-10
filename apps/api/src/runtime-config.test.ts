@@ -128,6 +128,9 @@ describe("runtime settings spec", () => {
       "llmProviderSecret",
       "token",
       "adminIds",
+      // must stay byte-identical to the Worker's secret; editing one side from
+      // the panel would silently drop every request back to socket-IP buckets
+      "originProxySecret",
       // cookie / URL surface
       "sessionCookieName",
       "cookieSecure",
