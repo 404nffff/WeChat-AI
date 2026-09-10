@@ -19,7 +19,7 @@
     "@wechat-ai/ilink": "workspace:*",
     "@wechat-ai/llm": "workspace:*",
     "dotenv": "^16.4.7",
-    "fastify": "^5.2.1",
+    "fastify": "^5.12.3",
     "tsx": "^4.19.3",
     "zod": "^3.24.2"
   },
