@@ -30,45 +30,45 @@
   <g transform="translate(42 38)">
     <rect x="0" y="0" width="916" height="664" rx="22" class="surface" filter="url(#shadow)"/>
     <text x="30" y="45" class="primary" font-size="26" font-weight="750" letter-spacing="-.5">WeChat-AI growth</text>
-    <text x="30" y="70" class="secondary" font-size="14">SMNETSTUDIO/WeChat-AI · Aug 10, 2026 – Sep 19, 2026</text>
+    <text x="30" y="70" class="secondary" font-size="14">SMNETSTUDIO/WeChat-AI · Aug 10, 2026 – Sep 20, 2026</text>
     <g transform="translate(740 25)"><rect width="146" height="30" rx="15" fill="#8b5cf6" fill-opacity=".12"/><circle cx="17" cy="15" r="4" fill="#8b5cf6"/><text x="30" y="20" fill="#8b5cf6" font-size="11" font-weight="700" letter-spacing="1">LOCAL HISTORY</text></g>
     <g transform="translate(30 92)">
     <rect width="418" height="86" rx="16" class="panel"/>
     <rect x="16" y="17" width="6" height="52" rx="3" fill="#8b5cf6"/>
     <text x="38" y="34" class="secondary" font-size="12" font-weight="650" letter-spacing=".3">STARS</text>
-    <text x="38" y="64" class="primary" font-size="27" font-weight="760" letter-spacing="-.5">1,913</text>
-    <text x="392" y="63" text-anchor="end" fill="#8b5cf6" font-size="11" font-weight="650">+1,226 tracked</text>
+    <text x="38" y="64" class="primary" font-size="27" font-weight="760" letter-spacing="-.5">1,916</text>
+    <text x="392" y="63" text-anchor="end" fill="#8b5cf6" font-size="11" font-weight="650">+1,229 tracked</text>
   </g><g transform="translate(468 92)">
     <rect width="418" height="86" rx="16" class="panel"/>
     <rect x="16" y="17" width="6" height="52" rx="3" fill="#06b6d4"/>
     <text x="38" y="34" class="secondary" font-size="12" font-weight="650" letter-spacing=".3">FORKS</text>
-    <text x="38" y="64" class="primary" font-size="27" font-weight="760" letter-spacing="-.5">1,282</text>
-    <text x="392" y="63" text-anchor="end" fill="#06b6d4" font-size="11" font-weight="650">+779 tracked</text>
+    <text x="38" y="64" class="primary" font-size="27" font-weight="760" letter-spacing="-.5">1,281</text>
+    <text x="392" y="63" text-anchor="end" fill="#06b6d4" font-size="11" font-weight="650">+778 tracked</text>
   </g>
     <g transform="translate(30 197)">
     <rect width="856" height="201" rx="16" class="panel"/>
     <circle cx="20" cy="27" r="5" fill="#8b5cf6"/>
     <text x="34" y="31" class="primary" font-size="14" font-weight="700">Stars</text>
-    <text x="20" y="62" class="primary" font-size="20" font-weight="750">1,913</text>
-    <text x="20" y="83" class="secondary" font-size="11">range 687–1,913</text>
-    <line x1="220" x2="836" y1="20" y2="20" class="grid" stroke-width="1" stroke-dasharray="3 6"/><text x="210" y="24" text-anchor="end" class="secondary" font-size="9">1,913</text><line x1="220" x2="836" y1="95" y2="95" class="grid" stroke-width="1" stroke-dasharray="3 6"/><text x="210" y="99" text-anchor="end" class="secondary" font-size="9">1,300</text><line x1="220" x2="836" y1="170" y2="170" class="grid" stroke-width="1" stroke-dasharray="3 6"/><text x="210" y="174" text-anchor="end" class="secondary" font-size="9">687</text>
-    <path d="M220 170 L235.4 81.3 L250.8 68.6 L266.2 48.5 L281.6 45.2 L297 42 L312.4 38.6 L327.8 37.5 L343.2 36.9 L358.6 35.4 L374 33.2 L389.4 32 L404.8 31.1 L420.2 30.4 L435.6 30.2 L451 29.4 L466.4 27.7 L481.8 27 L497.2 26.7 L512.6 26.6 L528 26.5 L543.4 26.1 L558.8 25.8 L574.2 25.6 L589.6 24.5 L605 24.3 L620.4 24.2 L635.8 24 L651.2 24 L666.6 23.5 L682 23.2 L697.4 22.8 L712.8 22.6 L728.2 22.6 L743.6 22 L759 22 L774.4 21.7 L789.8 20.4 L805.2 20.2 L820.6 20 L836 20 L836 170 L220 170 Z" fill="url(#fill-stars)"/>
-    <path d="M220 170 L235.4 81.3 L250.8 68.6 L266.2 48.5 L281.6 45.2 L297 42 L312.4 38.6 L327.8 37.5 L343.2 36.9 L358.6 35.4 L374 33.2 L389.4 32 L404.8 31.1 L420.2 30.4 L435.6 30.2 L451 29.4 L466.4 27.7 L481.8 27 L497.2 26.7 L512.6 26.6 L528 26.5 L543.4 26.1 L558.8 25.8 L574.2 25.6 L589.6 24.5 L605 24.3 L620.4 24.2 L635.8 24 L651.2 24 L666.6 23.5 L682 23.2 L697.4 22.8 L712.8 22.6 L728.2 22.6 L743.6 22 L759 22 L774.4 21.7 L789.8 20.4 L805.2 20.2 L820.6 20 L836 20" fill="none" stroke="#8b5cf6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="20" y="62" class="primary" font-size="20" font-weight="750">1,916</text>
+    <text x="20" y="83" class="secondary" font-size="11">range 687–1,916</text>
+    <line x1="220" x2="836" y1="20" y2="20" class="grid" stroke-width="1" stroke-dasharray="3 6"/><text x="210" y="24" text-anchor="end" class="secondary" font-size="9">1,916</text><line x1="220" x2="836" y1="95" y2="95" class="grid" stroke-width="1" stroke-dasharray="3 6"/><text x="210" y="99" text-anchor="end" class="secondary" font-size="9">1,302</text><line x1="220" x2="836" y1="170" y2="170" class="grid" stroke-width="1" stroke-dasharray="3 6"/><text x="210" y="174" text-anchor="end" class="secondary" font-size="9">687</text>
+    <path d="M220 170 L235 81.5 L250 68.8 L265.1 48.8 L280.1 45.5 L295.1 42.3 L310.1 38.9 L325.2 37.8 L340.2 37.2 L355.2 35.7 L370.2 33.5 L385.3 32.3 L400.3 31.5 L415.3 30.7 L430.3 30.5 L445.4 29.8 L460.4 28.1 L475.4 27.3 L490.4 27.1 L505.5 27 L520.5 26.8 L535.5 26.5 L550.5 26.1 L565.6 26 L580.6 24.9 L595.6 24.6 L610.6 24.5 L625.7 24.4 L640.7 24.4 L655.7 23.9 L670.7 23.5 L685.8 23.2 L700.8 22.9 L715.8 22.9 L730.8 22.3 L745.9 22.3 L760.9 22.1 L775.9 20.7 L790.9 20.6 L806 20.4 L821 20.4 L836 20 L836 170 L220 170 Z" fill="url(#fill-stars)"/>
+    <path d="M220 170 L235 81.5 L250 68.8 L265.1 48.8 L280.1 45.5 L295.1 42.3 L310.1 38.9 L325.2 37.8 L340.2 37.2 L355.2 35.7 L370.2 33.5 L385.3 32.3 L400.3 31.5 L415.3 30.7 L430.3 30.5 L445.4 29.8 L460.4 28.1 L475.4 27.3 L490.4 27.1 L505.5 27 L520.5 26.8 L535.5 26.5 L550.5 26.1 L565.6 26 L580.6 24.9 L595.6 24.6 L610.6 24.5 L625.7 24.4 L640.7 24.4 L655.7 23.9 L670.7 23.5 L685.8 23.2 L700.8 22.9 L715.8 22.9 L730.8 22.3 L745.9 22.3 L760.9 22.1 L775.9 20.7 L790.9 20.6 L806 20.4 L821 20.4 L836 20" fill="none" stroke="#8b5cf6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
     <circle cx="836" cy="20" r="5" fill="#8b5cf6" stroke="#fff" stroke-width="2"/>
-    <text x="220" y="194" text-anchor="start" class="secondary" font-size="9">Aug 10, 2026</text><text x="528" y="194" text-anchor="middle" class="secondary" font-size="9">Aug 30, 2026</text><text x="836" y="194" text-anchor="end" class="secondary" font-size="9">Sep 19, 2026</text>
+    <text x="220" y="194" text-anchor="start" class="secondary" font-size="9">Aug 10, 2026</text><text x="528" y="194" text-anchor="middle" class="secondary" font-size="9">Aug 30, 2026</text><text x="836" y="194" text-anchor="end" class="secondary" font-size="9">Sep 20, 2026</text>
   </g><g transform="translate(30 414)">
     <rect width="856" height="201" rx="16" class="panel"/>
     <circle cx="20" cy="27" r="5" fill="#06b6d4"/>
     <text x="34" y="31" class="primary" font-size="14" font-weight="700">Forks</text>
-    <text x="20" y="62" class="primary" font-size="20" font-weight="750">1,282</text>
+    <text x="20" y="62" class="primary" font-size="20" font-weight="750">1,281</text>
     <text x="20" y="83" class="secondary" font-size="11">range 503–1,283</text>
     <line x1="220" x2="836" y1="20" y2="20" class="grid" stroke-width="1" stroke-dasharray="3 6"/><text x="210" y="24" text-anchor="end" class="secondary" font-size="9">1,283</text><line x1="220" x2="836" y1="95" y2="95" class="grid" stroke-width="1" stroke-dasharray="3 6"/><text x="210" y="99" text-anchor="end" class="secondary" font-size="9">893</text><line x1="220" x2="836" y1="170" y2="170" class="grid" stroke-width="1" stroke-dasharray="3 6"/><text x="210" y="174" text-anchor="end" class="secondary" font-size="9">503</text>
-    <path d="M220 170 L235.4 66.7 L250.8 51 L266.2 33.1 L281.6 31.2 L297 28.1 L312.4 25.2 L327.8 24.6 L343.2 23.7 L358.6 23.3 L374 22.3 L389.4 21.9 L404.8 21.5 L420.2 21 L435.6 21.2 L451 21.2 L466.4 20.6 L481.8 20.4 L497.2 20.2 L512.6 20.2 L528 20.4 L543.4 20.6 L558.8 20.8 L574.2 20.8 L589.6 20.2 L605 20.2 L620.4 20 L635.8 20 L651.2 20.2 L666.6 20.2 L682 20 L697.4 20.2 L712.8 20.4 L728.2 20.4 L743.6 20.2 L759 20.6 L774.4 20.6 L789.8 20.8 L805.2 20.6 L820.6 20.2 L836 20.2 L836 170 L220 170 Z" fill="url(#fill-forks)"/>
-    <path d="M220 170 L235.4 66.7 L250.8 51 L266.2 33.1 L281.6 31.2 L297 28.1 L312.4 25.2 L327.8 24.6 L343.2 23.7 L358.6 23.3 L374 22.3 L389.4 21.9 L404.8 21.5 L420.2 21 L435.6 21.2 L451 21.2 L466.4 20.6 L481.8 20.4 L497.2 20.2 L512.6 20.2 L528 20.4 L543.4 20.6 L558.8 20.8 L574.2 20.8 L589.6 20.2 L605 20.2 L620.4 20 L635.8 20 L651.2 20.2 L666.6 20.2 L682 20 L697.4 20.2 L712.8 20.4 L728.2 20.4 L743.6 20.2 L759 20.6 L774.4 20.6 L789.8 20.8 L805.2 20.6 L820.6 20.2 L836 20.2" fill="none" stroke="#06b6d4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle cx="836" cy="20.2" r="5" fill="#06b6d4" stroke="#fff" stroke-width="2"/>
-    <text x="220" y="194" text-anchor="start" class="secondary" font-size="9">Aug 10, 2026</text><text x="528" y="194" text-anchor="middle" class="secondary" font-size="9">Aug 30, 2026</text><text x="836" y="194" text-anchor="end" class="secondary" font-size="9">Sep 19, 2026</text>
+    <path d="M220 170 L235 66.7 L250 51 L265.1 33.1 L280.1 31.2 L295.1 28.1 L310.1 25.2 L325.2 24.6 L340.2 23.7 L355.2 23.3 L370.2 22.3 L385.3 21.9 L400.3 21.5 L415.3 21 L430.3 21.2 L445.4 21.2 L460.4 20.6 L475.4 20.4 L490.4 20.2 L505.5 20.2 L520.5 20.4 L535.5 20.6 L550.5 20.8 L565.6 20.8 L580.6 20.2 L595.6 20.2 L610.6 20 L625.7 20 L640.7 20.2 L655.7 20.2 L670.7 20 L685.8 20.2 L700.8 20.4 L715.8 20.4 L730.8 20.2 L745.9 20.6 L760.9 20.6 L775.9 20.8 L790.9 20.6 L806 20.2 L821 20.2 L836 20.4 L836 170 L220 170 Z" fill="url(#fill-forks)"/>
+    <path d="M220 170 L235 66.7 L250 51 L265.1 33.1 L280.1 31.2 L295.1 28.1 L310.1 25.2 L325.2 24.6 L340.2 23.7 L355.2 23.3 L370.2 22.3 L385.3 21.9 L400.3 21.5 L415.3 21 L430.3 21.2 L445.4 21.2 L460.4 20.6 L475.4 20.4 L490.4 20.2 L505.5 20.2 L520.5 20.4 L535.5 20.6 L550.5 20.8 L565.6 20.8 L580.6 20.2 L595.6 20.2 L610.6 20 L625.7 20 L640.7 20.2 L655.7 20.2 L670.7 20 L685.8 20.2 L700.8 20.4 L715.8 20.4 L730.8 20.2 L745.9 20.6 L760.9 20.6 L775.9 20.8 L790.9 20.6 L806 20.2 L821 20.2 L836 20.4" fill="none" stroke="#06b6d4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="836" cy="20.4" r="5" fill="#06b6d4" stroke="#fff" stroke-width="2"/>
+    <text x="220" y="194" text-anchor="start" class="secondary" font-size="9">Aug 10, 2026</text><text x="528" y="194" text-anchor="middle" class="secondary" font-size="9">Aug 30, 2026</text><text x="836" y="194" text-anchor="end" class="secondary" font-size="9">Sep 20, 2026</text>
   </g>
-    <text x="30" y="645" class="secondary" font-size="11">Updated Sep 19, 2026</text>
+    <text x="30" y="645" class="secondary" font-size="11">Updated Sep 20, 2026</text>
     <a href="https://github.com/MacRimi/repo-growth" target="_blank" aria-label="Open the Repo Growth project">
       <text x="886" y="645" fill="#8b5cf6" text-anchor="end" font-size="13" font-weight="700">Generated by Repo Growth ↗</text>
     </a>
